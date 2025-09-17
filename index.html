@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>咖啡点单</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+        <h1>早安咖啡</h1>
+        <p>用一杯香醇唤醒你的灵感</p>
+        <a class="hero__cta" href="#order">立即点单</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="menu" id="menu">
+        <h2>精品菜单</h2>
+        <div class="menu__grid">
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80" alt="拿铁咖啡" />
+            <div class="card__body">
+              <h3>拿铁 Latte</h3>
+              <p>丝滑奶泡融合浓缩咖啡，口感顺滑柔和。</p>
+              <p class="price">¥28</p>
+            </div>
+          </article>
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=400&q=80" alt="美式咖啡" />
+            <div class="card__body">
+              <h3>美式 Americano</h3>
+              <p>两份浓缩加纯净热水，回味悠长。</p>
+              <p class="price">¥22</p>
+            </div>
+          </article>
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=400&q=80" alt="焦糖玛奇朵" />
+            <div class="card__body">
+              <h3>焦糖玛奇朵</h3>
+              <p>香甜焦糖搭配浓缩咖啡，层次丰富。</p>
+              <p class="price">¥32</p>
+            </div>
+          </article>
+          <article class="card">
+            <img src="https://images.unsplash.com/photo-1459755486867-b55449bb39ff?auto=format&fit=crop&w=400&q=80" alt="冷萃咖啡" />
+            <div class="card__body">
+              <h3>冷萃 Cold Brew</h3>
+              <p>长时间冷萃萃取，低酸清爽。</p>
+              <p class="price">¥30</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="order" id="order">
+        <h2>自定义你的咖啡</h2>
+        <form class="order__form" id="orderForm">
+          <div class="field">
+            <label for="drink">选择饮品</label>
+            <select id="drink" name="drink" required>
+              <option value="latte" data-price="28">拿铁 Latte</option>
+              <option value="americano" data-price="22">美式 Americano</option>
+              <option value="caramel" data-price="32">焦糖玛奇朵</option>
+              <option value="coldbrew" data-price="30">冷萃 Cold Brew</option>
+            </select>
+          </div>
+
+          <div class="field field--inline">
+            <label for="size">杯型</label>
+            <div class="radio-group" id="size">
+              <label>
+                <input type="radio" name="size" value="小杯" data-multiplier="1" checked />
+                小杯
+              </label>
+              <label>
+                <input type="radio" name="size" value="中杯" data-multiplier="1.2" />
+                中杯 (+20%)
+              </label>
+              <label>
+                <input type="radio" name="size" value="大杯" data-multiplier="1.4" />
+                大杯 (+40%)
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="milk">奶类选择</label>
+            <select id="milk" name="milk">
+              <option value="全脂牛奶">全脂牛奶</option>
+              <option value="燕麦奶" data-extra="4">燕麦奶 (+¥4)</option>
+              <option value="脱脂牛奶">脱脂牛奶</option>
+              <option value="豆奶" data-extra="3">豆奶 (+¥3)</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>加料</label>
+            <div class="checkbox-group">
+              <label>
+                <input type="checkbox" name="addons" value="香草糖浆" data-extra="3" />
+                香草糖浆 (+¥3)
+              </label>
+              <label>
+                <input type="checkbox" name="addons" value="榛果糖浆" data-extra="3" />
+                榛果糖浆 (+¥3)
+              </label>
+              <label>
+                <input type="checkbox" name="addons" value="奶油" data-extra="2" />
+                奶油 (+¥2)
+              </label>
+              <label>
+                <input type="checkbox" name="addons" value="双倍浓缩" data-extra="5" />
+                双倍浓缩 (+¥5)
+              </label>
+            </div>
+          </div>
+
+          <div class="field field--inline">
+            <label for="quantity">数量</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1" />
+          </div>
+
+          <div class="field">
+            <label for="note">备注</label>
+            <textarea id="note" name="note" rows="3" placeholder="无糖、少冰、温度调整等特殊需求"></textarea>
+          </div>
+
+          <button type="submit" class="button">加入订单</button>
+        </form>
+
+        <aside class="order__summary" aria-live="polite">
+          <h3>当前订单</h3>
+          <ul id="orderItems" class="order__list">
+            <li class="empty">还没有选择饮品</li>
+          </ul>
+          <div class="order__total">
+            <span>总计</span>
+            <strong id="orderTotal">¥0</strong>
+          </div>
+          <button class="button button--secondary" id="submitOrder" disabled>
+            提交订单
+          </button>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2024 早安咖啡 | 咖啡让生活更美好</p>
+    </footer>
+
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+      <div class="modal__content">
+        <h3 id="modalTitle">订单提交成功</h3>
+        <p id="modalMessage"></p>
+        <button class="button" id="closeModal">好的</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
